@@ -44,3 +44,14 @@ AFRAME.registerComponent("markerhandler", {
       buttonDiv.style.display = "none";
     }
   });
+    getToys: async function() {
+        //Get the toys from the firestore database
+        return await firebase
+          .firestore()
+          .collection("toys")
+          .get()
+          .then(snap => {
+            return snap.docs.map(doc => doc.data());
+          });
+      }
+    });
